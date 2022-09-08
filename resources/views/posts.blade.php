@@ -1,11 +1,13 @@
 <html lang="en">
 <head>
+    <title>My Blog</title>
     <link rel="stylesheet" href="/app.css">
 </head>
 <body>
 
-    {!! $post !!}
+    @foreach ($posts as $post)
+        {!! $post !!} 
+    @endforeach
 
-    <a href="/">Go back</a>
 </body>
 </html>
