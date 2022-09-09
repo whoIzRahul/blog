@@ -2,26 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\File;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Post
+class Post extends Model
 {
+    use HasFactory;
 
-    public static function all(){
-        $files = File::files(resource_path("posts/"));
-        return array_map(function($file){
-            return $file->getContents();
-        },$files);
+    // ALloes the fillable properties to be mass assgined values
+    // protected $fillable = ['title','excerpt','body'];
+
+    // Allows everything except the guarded property to be mass assigned
+    protected $guarded = ['id'];
+
+    public function Category(){
+        return $this->BelongsTo(Category::class);
     }
 
-    public static function find($slug)
-    {
-    $path = resource_path()."/posts/{$slug}.html";
-
-    if( ! file_exists($path)){
-        ddd(404);
-    }
-
-    return file_get_contents($path);
-    }
 }

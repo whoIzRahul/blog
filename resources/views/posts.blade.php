@@ -1,13 +1,21 @@
-<html lang="en">
-<head>
-    <title>My Blog</title>
-    <link rel="stylesheet" href="/app.css">
-</head>
-<body>
-
+<x-layout>
     @foreach ($posts as $post)
-        {!! $post !!} 
-    @endforeach
+    <article>
+        <h1>
+            <a href="/post/{{$post->slug}}">
+                {{$post->title}}
+            </a>
+        </h1>
 
-</body>
-</html>
+        <h2>
+            <a href="#">
+                {{$post->category->name}}
+            </a>
+        </h2>
+
+        <div>
+            {{ $post->excerpt }} 
+        </div>
+    </article>
+    @endforeach
+</x-layout>
