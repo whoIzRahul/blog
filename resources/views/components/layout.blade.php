@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="/app.css">
 </head>
 <body>
-
     {{ $slot }}
 </body>
 </html>

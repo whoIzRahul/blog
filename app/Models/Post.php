@@ -15,9 +15,14 @@ class Post extends Model
 
     // Allows everything except the guarded property to be mass assigned
     protected $guarded = ['id'];
+    protected $with = ['category','author'];
 
-    public function Category(){
+    public function category(){
         return $this->BelongsTo(Category::class);
+    }
+
+    public function author(){
+        return $this->belongsTo(User::class,'user_id');
     }
 
 }

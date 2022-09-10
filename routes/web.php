@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +17,7 @@ use App\Models\Post;
 */
 
 Route::get('/', function () {
-    return view('posts',['posts' => Post::all()]);
+    return view('posts',['posts' => Post::latest()->get()]);
 });
 
 Route::get('post/{post:slug}',function(Post $post){ // Post::where('slug',$post)->findOrFail()
@@ -23,3 +26,17 @@ Route::get('post/{post:slug}',function(Post $post){ // Post::where('slug',$post)
     ['post' => $post ]
 );
 });
+
+// To load view of categories without creating categories file
+// Route::get('/categories/{category:slug}',function(Category $category){
+//     return view('category',['category'=> $category]);
+// });
+// Or
+Route::get('/categories/{category:slug}', function (Category $category) {
+    return view('posts',['posts' => $category->posts]);
+});
+
+Route::get('/authors/{author:username}',function(User $author){
+    return view('posts',['posts' => $author->posts]);
+});
+
