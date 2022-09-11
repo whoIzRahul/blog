@@ -40,3 +40,6 @@ Route::get('/authors/{author:username}',function(User $author){
     return view('posts',['posts' => $author->posts]);
 });
 
+Route::get('/category/{category:slug}',function(Category $category){
+    return view('category',['category'=> $category]);
+});

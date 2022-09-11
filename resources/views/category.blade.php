@@ -1,10 +1,7 @@
 <x-layout>
-    <h1>{{ $category->name }}</h1>
-    @foreach($category->posts as $post)
-    <article>
-        <h2>{{$post->title}}</h2>
-        <div>{!!$post->body!!}</div>
-    </article>
-    @endforeach
-    <a href="/">Go back</a>
+    @include('_posts-header')
+    <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
+        <x-goback-button />
+        <x-post-grid :posts="$category->posts"/>
+    </main>
 </x-layout>

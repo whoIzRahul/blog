@@ -1,5 +1,5 @@
 <x-layout>
-    @foreach ($posts as $post)
+    {{-- @foreach ($posts as $post)
     <article>
         <h1>
             <a href="/post/{{$post->slug}}">
@@ -11,5 +11,15 @@
             {!! $post->excerpt !!} 
         </div>
     </article>
-    @endforeach
+    @endforeach --}}
+
+    @include('_posts-header')
+
+    <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
+        {{-- Passing the post collection to the existing component called post grid --}}
+        <x-post-grid :posts="$posts"/>
+    </main>
+
+
+
 </x-layout>
