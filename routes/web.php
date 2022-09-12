@@ -17,15 +17,15 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
-    return view('posts',['posts' => Post::latest()->get()]);
-});
+    return view('posts',['posts' => Post::latest()->get(),'categories' => Category::all()]);
+})->name('home');
 
 Route::get('post/{post:slug}',function(Post $post){ // Post::where('slug',$post)->findOrFail()
 
     return view('post',
     ['post' => $post ]
 );
-});
+})->name('post');
 
 // To load view of categories without creating categories file
 // Route::get('/categories/{category:slug}',function(Category $category){
@@ -33,13 +33,13 @@ Route::get('post/{post:slug}',function(Post $post){ // Post::where('slug',$post)
 // });
 // Or
 Route::get('/categories/{category:slug}', function (Category $category) {
-    return view('posts',['posts' => $category->posts]);
-});
+    return view('posts',['posts' => $category->posts , 'categories'=> Category::all(), 'currentCategory' => $category]);
+})->name('category');
 
 Route::get('/authors/{author:username}',function(User $author){
     return view('posts',['posts' => $author->posts]);
-});
+})->name('author');
 
-Route::get('/category/{category:slug}',function(Category $category){
-    return view('category',['category'=> $category]);
-});
+// Route::get('/category/{category:slug}',function(Category $category){
+//     return view('category',['category'=> $category]);
+// });

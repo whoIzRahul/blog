@@ -20,8 +20,8 @@
                             </div>
                         </header>
 
-                        <div class="text-sm mt-4">
-                            {{$post->excerpt}}
+                        <div class="text-sm mt-4 space-y-2">
+                            {!! (request()->routeIs('post')) ? $post->body : $post->excerpt !!}
                         </div>
 
                         <footer class="flex justify-between items-center mt-8">
