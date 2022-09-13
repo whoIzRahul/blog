@@ -17,6 +17,21 @@ class Post extends Model
     protected $guarded = ['id'];
     protected $with = ['category','author'];
 
+    public function scopeFilter($query, array $filters){
+        // Normal way without using query builder
+        // if(null != request('search')){
+        //     $query->where("title","like","%".request('search')."%")
+        //     ->orWhere("body","like","%".request('search')."%");
+        // }
+
+        // $filters['search'] ?? false (Null check)
+
+        // Search using query builder
+        $query->when($filters['search'] ?? false, function($query, $search){
+            $query->where("title","like","%".$search."%")
+            ->orWhere("body","like","%".$search."%");
+        });
+    }
     public function category(){
         return $this->BelongsTo(Category::class);
     }

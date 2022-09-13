@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
@@ -16,16 +17,9 @@ use App\Models\User;
 |
 */
 
-Route::get('/', function () {
-    return view('posts',['posts' => Post::latest()->get(),'categories' => Category::all()]);
-})->name('home');
+Route::get('/', [PostController::class,'index'])->name('home');
 
-Route::get('post/{post:slug}',function(Post $post){ // Post::where('slug',$post)->findOrFail()
-
-    return view('post',
-    ['post' => $post ]
-);
-})->name('post');
+Route::get('post/{post:slug}',[PostController::class,'show'])->name('post');
 
 // To load view of categories without creating categories file
 // Route::get('/categories/{category:slug}',function(Category $category){
