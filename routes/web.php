@@ -26,13 +26,15 @@ Route::get('post/{post:slug}',[PostController::class,'show'])->name('post');
 //     return view('category',['category'=> $category]);
 // });
 // Or
-Route::get('/categories/{category:slug}', function (Category $category) {
-    return view('posts',['posts' => $category->posts , 'categories'=> Category::all(), 'currentCategory' => $category]);
-})->name('category');
 
-Route::get('/authors/{author:username}',function(User $author){
-    return view('posts',['posts' => $author->posts]);
-})->name('author');
+// Replaced by scope filter of the post controller
+// Route::get('/categories/{category:slug}', function (Category $category) {
+//     return view('posts',['posts' => $category->posts , 'categories'=> Category::all(), 'currentCategory' => $category]);
+// })->name('category');
+
+// Route::get('/authors/{author:username}',function(User $author){
+//     return view('posts.index',['posts' => $author->posts]);
+// })->name('author');
 
 // Route::get('/category/{category:slug}',function(Category $category){
 //     return view('category',['category'=> $category]);
