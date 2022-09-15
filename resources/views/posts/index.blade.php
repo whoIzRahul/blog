@@ -17,9 +17,8 @@
 
     <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
         {{-- Passing the post collection to the existing component called post grid --}}
-        <x-post-grid :posts="$posts"/>
+        @if($posts->count())
+            <x-post-grid :posts="$posts"/>
+        @endif
     </main>
-
-
-
 </x-layout>

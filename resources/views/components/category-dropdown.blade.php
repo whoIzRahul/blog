@@ -5,11 +5,11 @@
           <x-svg-icon name="dropdownarrow"/>
       </button>
   </x-slot>
-  <x-dropdown-item href="/"
+  <x-dropdown-item href="/?{{http_build_query(request()->except('category','page'))}}"
    {{--:active="request()->routeIs('home')" Use this if you want to show that all is active--}}
    >All</x-dropdown-item>
   @foreach($categories as $category)
   {{-- {{(isset($currentCategory) && $currentCategory->id == $category->id)  ? 'bg-blue-500' : ''}} --}}
-  <x-dropdown-item href="?category={{$category->slug}}" :active="isset($currentCategory) && $currentCategory->id == $category->id">{{ucwords($category->name)}}</x-dropdown-item>
+  <x-dropdown-item href="?category={{$category->slug}}&{{http_build_query(request()->except('category','page'))}}" :active="isset($currentCategory) && $currentCategory->id == $category->id">{{ucwords($category->name)}}</x-dropdown-item>
   @endforeach
 </x-drop-down>

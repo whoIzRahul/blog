@@ -27,9 +27,9 @@ class Post extends Model
         // $filters['search'] ?? false (Null check)
 
         // Search using query builder
-        $query->when($filters['search'] ?? false, function($query, $search){
-            $query->where("title","like","%".$search."%")
-            ->orWhere("body","like","%".$search."%");
+        $query->when($filters['search'] ?? false, function($query, $search){  
+           $query->where(fn($query) =>  $query->where("body","like","%".$search."%")->orWhere("title","like","%".$search."%")->orWhere('excerpt','like','%'.$search.'%'));
+            
         });
 
         $query->when($filters['category'] ?? false, function($query, $category){
@@ -39,7 +39,7 @@ class Post extends Model
             $query->whereHas('category',fn($query)=> $query->where('slug',$category));
         });
 
-        $query->when(request('author') ?? false,function($query, $author){
+        $query->when($filters['author'] ?? false,function($query, $author){
             $query->whereHas('author',fn($query)=> $query->where('username',$author));
         });
     }
