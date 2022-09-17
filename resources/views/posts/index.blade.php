@@ -21,4 +21,9 @@
             <x-post-grid :posts="$posts"/>
         @endif
     </main>
+    @if(session()->has('success'))
+        <div x-data="{show: true}" x-init="setTimeout(()=> show=false, 4000)" x-show="show" class="fixed bg-blue-500 text-white py-3 px-5 bottom-2 right-3 rounded text-xs">
+            {{session('success')}}
+        </div>
+    @endif
 </x-layout>

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionsController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
@@ -39,3 +41,9 @@ Route::get('post/{post:slug}',[PostController::class,'show'])->name('post');
 // Route::get('/category/{category:slug}',function(Category $category){
 //     return view('category',['category'=> $category]);
 // });
+Route::get('register',[RegisterController::class,'create'])->middleware('guest');
+Route::post('register',[RegisterController::class,'store'])->middleware('guest');
+
+Route::get('login',[SessionsController::class,'create'])->middleware('guest');
+Route::post('session',[SessionsController::class,'store'])->middleware('guest');
+Route::post('logout',[SessionsController::class,'destroy'])->middleware('auth');

@@ -17,11 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,6 +38,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //Get method has get instead of set in the method name
+    //This is a mutator method
+    public function setPasswordAttribute($password){
+        return $this->attributes['password'] = bcrypt($password);
+    }
+
+    //This is the method that defines the relationship between classes
     public function posts(){
         return $this->hasMany(Post::class);
     }

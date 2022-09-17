@@ -16,12 +16,30 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0">
-                <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+            <div class="mt-8 md:mt-0 flex">
+                <div class="ml-3 font-bold rounded-full uppercase py-2 px-2 hover:bg-blue-200">
+                    <a href="/" >
+                        Home
+                    </a>
+                </div>
 
-                <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
-                    Subscribe for Updates
+                {{-- Checking if a user is logged in! --}}
+                @if(! auth()->check())
+                
+                <a href="/login" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                    Log in
                 </a>
+                <a href="/register" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                    Register
+                </a>
+                @else
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                            Logout
+                        </button>
+                    </form>
+                @endif
             </div>
         </nav>
 
