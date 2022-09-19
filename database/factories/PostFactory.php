@@ -19,7 +19,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory()->create(),
+            'user_id' => Category::factory(),
             'category_id' => Category::factory()->create(),
             'title' => fake()->name(),
             'slug' => fake()->word(),

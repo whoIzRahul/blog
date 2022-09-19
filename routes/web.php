@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
@@ -22,6 +23,8 @@ use App\Models\User;
 Route::get('/', [PostController::class,'index'])->name('home');
 
 Route::get('post/{post:slug}',[PostController::class,'show'])->name('post');
+
+Route::post('post/{post:slug}/comment',[CommentController::class,'store']);
 
 // To load view of categories without creating categories file
 // Route::get('/categories/{category:slug}',function(Category $category){

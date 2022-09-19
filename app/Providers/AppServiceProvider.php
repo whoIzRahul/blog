@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //Use to make all the properties fillable of all models
+        //Model::unguard();
     }
 }

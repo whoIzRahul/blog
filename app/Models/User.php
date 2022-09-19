@@ -46,7 +46,11 @@ class User extends Authenticatable
 
     //This is the method that defines the relationship between classes
     public function posts(){
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class,'post_id');
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 
 }
