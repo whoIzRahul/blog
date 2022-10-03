@@ -1,13 +1,11 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
-use App\Models\Category;
 use Illuminate\Support\Facades\Route;
-use App\Models\Post;
-use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +23,8 @@ Route::get('/', [PostController::class,'index'])->name('home');
 Route::get('post/{post:slug}',[PostController::class,'show'])->name('post');
 
 Route::post('post/{post:slug}/comment',[CommentController::class,'store']);
+
+Route::post('newsletter/subscribe',NewsletterController::class);
 
 // To load view of categories without creating categories file
 // Route::get('/categories/{category:slug}',function(Category $category){
